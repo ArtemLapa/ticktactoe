@@ -16,21 +16,30 @@ let game = document.querySelector('.game'),
 
 function stepCross(target) {
   target.innerHTML = cross;
-  target.classList.add('x');
+  console.log(target.innerHTML)
+  if (!target.classList.contains('cross')) {
+    target.classList.add('x');
+  }
   count++;
 }
 
 function stepZero(target) {
   target.innerHTML = circle;
-  target.classList.add('o');
+  if (!target.classList.contains('circle')) {
+    target.classList.add('o');
+  }
   count++;
 }
 
 function init(e) {
   if (!step) {
-    stepCross(e.target);
+    if (!e.target.classList.contains("circle")) {
+      stepCross(e.target);
+    }
   } else {
-    stepZero(e.target);
+    if (!e.target.classList.contains("cross")) {
+      stepZero(e.target);
+    }
   }
   step = !step;
   win();
